@@ -8,6 +8,7 @@ import { FormGroup, FormControl, Validators  } from '@angular/forms';
 })
 export class CreateSessionComponent implements OnInit {
   @Output() saveNewSession = new EventEmitter();
+  @Output() cancelNewSession = new EventEmitter();
 newSessionForm: FormGroup;
 name: FormControl;
 presenter: FormControl;
@@ -40,5 +41,10 @@ saveSession(formValues) {
          abstract: formValues.abstract,
 
   };
+  this.saveNewSession.emit(session);
 }
+cancelSession() {
+  // tslint:disable-next-line:no-unused-expression
+  this.cancelNewSession.emit();
+ }
 }
