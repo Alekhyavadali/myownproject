@@ -7,9 +7,9 @@ import { appRoutes } from './routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { NavBarComponent } from './events/nav/navbar.component';
-import { TOASTR_TOKEN, Toastr} from './events/common/toastr.service';
-import { EventsAppComponent } from './events-app.component';
-
+import { } from './events/common/toastr.service';
+import { EventsAppComponent   } from './events-app.component';
+import { CollapsibleWellComponent, TOASTR_TOKEN, Toastr, JQ_TOKEN } from './events/common/index';
 import {
   EventDetailsComponent,
   EventListResolver,
@@ -22,9 +22,10 @@ import {
   SessionListComponent,
   DurationPipe
 } from './events/index';
-import { CollapsibleWellComponent } from './events/common/collapsible-well.component';
+
 
 const toastr: Toastr = window['toastr'];
+const jQuery = window['$'];
 @NgModule({
   declarations: [
     EventsAppComponent,
@@ -51,7 +52,8 @@ const toastr: Toastr = window['toastr'];
   providers: [EventService, {provide: TOASTR_TOKEN, useValue: toastr}, EventRouteActivator,
     { provide: 'canDeactivateCreateEvent', useValue: dirtyEvent },
     EventListResolver,
-    AuthService
+    AuthService,
+    {provide: JQ_TOKEN, useValue: jQuery}
   ],
   bootstrap: [EventsAppComponent]
 })
