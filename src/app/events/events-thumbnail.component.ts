@@ -1,6 +1,6 @@
 import { IEvent } from './shared/event.model';
 import { Component, Input, OnInit } from '@angular/core';
-import {ToastrService} from './common/toastr.service';
+
 
 @Component({
     // tslint:disable-next-line:component-selector
@@ -15,6 +15,6 @@ import {ToastrService} from './common/toastr.service';
 })
 export class EventsThumbnailComponent  {
   @Input() event: IEvent;
-  constructor(private toastr: ToastrService) {}
+  constructor() {}
 
 }

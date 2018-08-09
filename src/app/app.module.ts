@@ -7,7 +7,7 @@ import { appRoutes } from './routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
 import { NavBarComponent } from './events/nav/navbar.component';
-import { ToastrService } from './events/common/toastr.service';
+import { TOASTR_TOKEN, Toastr} from './events/common/toastr.service';
 import { EventsAppComponent } from './events-app.component';
 
 import {
@@ -19,11 +19,12 @@ import {
   EventsThumbnailComponent,
   EventService,
   CreateSessionComponent,
-  SessionListComponent
+  SessionListComponent,
+  DurationPipe
 } from './events/index';
 import { CollapsibleWellComponent } from './events/common/collapsible-well.component';
 
-
+const toastr: Toastr = window['toastr'];
 @NgModule({
   declarations: [
     EventsAppComponent,
@@ -35,7 +36,8 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe
      ],
   imports: [
     BrowserModule,
@@ -46,7 +48,7 @@ import { CollapsibleWellComponent } from './events/common/collapsible-well.compo
 
 
   ],
-  providers: [EventService, ToastrService, EventRouteActivator,
+  providers: [EventService, {provide: TOASTR_TOKEN, useValue: toastr}, EventRouteActivator,
     { provide: 'canDeactivateCreateEvent', useValue: dirtyEvent },
     EventListResolver,
     AuthService

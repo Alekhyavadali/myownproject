@@ -1,3 +1,4 @@
+
 // Intermediate level..
 // Angular Fundamentals
 // chapter-7
@@ -6,9 +7,10 @@
 
 
 import { AuthService } from './auth.service';
-import { Component,  OnInit } from '@angular/core';
+import { Component,  OnInit, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router} from '@angular/router';
+import { TOASTR_TOKEN, Toastr } from './../events/common/toastr.service';
 
 @Component({
   templateUrl: './profile.component.html' ,
@@ -16,7 +18,7 @@ import { Router} from '@angular/router';
   .error input {background-color: #E3C3C5}`]
 })
 export class ProfileComponent implements OnInit {
-  constructor(private auth: AuthService, private route: Router) {}
+  constructor(private auth: AuthService, private route: Router, @Inject(TOASTR_TOKEN) private toastr: Toastr) {}
 profileForm: FormGroup;
 private firstName: FormControl;
 private lastName: FormControl;
@@ -34,6 +36,7 @@ this.lastName = new FormControl(this.auth.currentUser.lastName, [Validators.requ
 saveProfile(formValue) {
   if (this.profileForm.valid) {
 this.auth.updateCurrentUser(formValue.firstName, formValue.lastName);
+this.toastr.success('Profile saved');
 this.route.navigate(['events']);
 }
 }

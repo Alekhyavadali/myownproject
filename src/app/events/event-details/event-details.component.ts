@@ -13,6 +13,10 @@ export class EventDetailsComponent {
 constructor(private eventService: EventService, private route: ActivatedRoute) {}
 event: IEvent;
 addMode: boolean;
+// tslint:disable-next-line:no-inferrable-types
+filterBy: string = 'all';
+// tslint:disable-next-line:no-inferrable-types
+sortBy: string = 'votes';
 // tslint:disable-next-line:use-life-cycle-interface
 ngOnInit() {
 this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
