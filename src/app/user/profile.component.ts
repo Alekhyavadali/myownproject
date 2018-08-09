@@ -1,7 +1,7 @@
 
 // Intermediate level..
 // Angular Fundamentals
-// chapter-7
+// chapter-7 & 11
 // Reactive FormControls ********
 // goto angular.io to know more about validators
 
