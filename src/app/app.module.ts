@@ -9,7 +9,8 @@ import { NgModule, Component } from '@angular/core';
 import { NavBarComponent } from './events/nav/navbar.component';
 import { } from './events/common/toastr.service';
 import { EventsAppComponent   } from './events-app.component';
-import { CollapsibleWellComponent, TOASTR_TOKEN, Toastr, JQ_TOKEN } from './events/common/index';
+import { CollapsibleWellComponent, TOASTR_TOKEN, Toastr, JQ_TOKEN, SimpleModalComponent,
+   ModalTriggerDirective } from './events/common/index';
 import {
   EventDetailsComponent,
   EventListResolver,
@@ -38,7 +39,9 @@ const jQuery = window['$'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent,
+    ModalTriggerDirective
      ],
   imports: [
     BrowserModule,
