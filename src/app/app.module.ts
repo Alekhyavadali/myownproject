@@ -1,3 +1,4 @@
+import { LocationValidator } from './events/location-validator.directive';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from './user/auth.service';
 import { CustomerDashboardModule } from './customer-dashboard/customer-dashboard.module';
@@ -21,8 +22,12 @@ import {
   EventService,
   CreateSessionComponent,
   SessionListComponent,
-  DurationPipe
+  DurationPipe,
+  UpvoteComponent
 } from './events/index';
+import { VoterService } from './events/event-details/voter.service';
+
+
 
 
 const toastr: Toastr = window['toastr'];
@@ -41,7 +46,9 @@ const jQuery = window['$'];
     CollapsibleWellComponent,
     DurationPipe,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    UpvoteComponent,
+    LocationValidator
      ],
   imports: [
     BrowserModule,
@@ -56,7 +63,8 @@ const jQuery = window['$'];
     { provide: 'canDeactivateCreateEvent', useValue: dirtyEvent },
     EventListResolver,
     AuthService,
-    {provide: JQ_TOKEN, useValue: jQuery}
+    {provide: JQ_TOKEN, useValue: jQuery},
+    VoterService
   ],
   bootstrap: [EventsAppComponent]
 })

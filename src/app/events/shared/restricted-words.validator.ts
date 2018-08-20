@@ -1,5 +1,5 @@
 import { FormControl } from '@angular/forms';
-
+// custom validators
 export function restrictedWords(words) {
     return (control: FormControl): {[key: string]: any} => {
     if (!words) {

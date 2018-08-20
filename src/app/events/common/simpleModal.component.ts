@@ -22,10 +22,13 @@ import { Component, Input, Inject, ViewChild, ElementRef } from '@angular/core';
 export class SimpleModalComponent {
     @Input() title: string;
     @Input() elementId: string;
+    @Input() closeOnBodyClick: string;
     @ViewChild('modalContainer') containerEl: ElementRef;
 constructor(@Inject(JQ_TOKEN) private $: any) {}
 
     closeModal() {
+        if (this.closeOnBodyClick.toLowerCase() === 'true') {
         this.$(this.containerEl.nativeElement).modal('hide');
-    }
+                 }
+   }
 }
