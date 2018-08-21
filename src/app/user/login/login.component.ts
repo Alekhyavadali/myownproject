@@ -10,13 +10,21 @@ import {Router} from '@angular/router';
 export class LoginComponent implements OnInit {
 username: string;
 password: string;
+loginInValid = false;
   constructor(private authService: AuthService, private route: Router) { }
 
   ngOnInit() {
   }
 login(loginData: NgForm) {
   console.log(loginData);
-this.authService.loginUser(this.username, this.password);
+this.authService.loginUser(this.username, this.password).subscribe(resp => {
+  if (!resp) {
+    console.log('Invalid set true');
+this.loginInValid = true;
+  } else {
+    this.route.navigateByUrl('events');
+  }
+});
 }
 redirect() {
   this.route.navigateByUrl('events');

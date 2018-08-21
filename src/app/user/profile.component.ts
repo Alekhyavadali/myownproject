@@ -35,8 +35,9 @@ this.lastName = new FormControl(this.auth.currentUser.lastName, [Validators.requ
 }
 saveProfile(formValue) {
   if (this.profileForm.valid) {
-this.auth.updateCurrentUser(formValue.firstName, formValue.lastName);
-this.toastr.success('Profile saved');
+this.auth.updateCurrentUser(formValue.firstName, formValue.lastName).subscribe(() => {
+  this.toastr.success('Profile saved');
+});
 this.route.navigate(['events']);
 }
 }
@@ -45,5 +46,10 @@ validateFirstName(form) {
 }
 validateLastName() {
   return this.lastName.valid || this.profileForm.controls.lastName.untouched;
+}
+logout() {
+  this.auth.logout().subscribe(() => {
+this.route.navigate(['/events']);
+  });
 }
 }

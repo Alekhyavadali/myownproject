@@ -17,8 +17,9 @@ constructor(private router: Router, private eventService: EventService) {
         this.router.navigateByUrl('events');
     }
 saveEvent(formvalues) {
- this.eventService.saveEvent(formvalues);
- this.isDirty = false;
- this.router.navigateByUrl('events');
+ this.eventService.saveEvent(formvalues).subscribe(() => {
+    this.isDirty = false;
+    this.router.navigateByUrl('events');
+ });
     }
 }

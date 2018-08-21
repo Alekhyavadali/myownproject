@@ -7,6 +7,7 @@ import { RouterModule } from '@angular/router';
 import { appRoutes } from './routes';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { NavBarComponent } from './events/nav/navbar.component';
 import { } from './events/common/toastr.service';
 import { EventsAppComponent   } from './events-app.component';
@@ -15,7 +16,7 @@ import { CollapsibleWellComponent, TOASTR_TOKEN, Toastr, JQ_TOKEN, SimpleModalCo
 import {
   EventDetailsComponent,
   EventListResolver,
-  EventRouteActivator,
+  // EventRouteActivator,
   CreateEVentComponent,
   EventsListComponent,
   EventsThumbnailComponent,
@@ -23,7 +24,8 @@ import {
   CreateSessionComponent,
   SessionListComponent,
   DurationPipe,
-  UpvoteComponent
+  UpvoteComponent,
+  EventResolver
 } from './events/index';
 import { VoterService } from './events/event-details/voter.service';
 
@@ -55,13 +57,14 @@ const jQuery = window['$'];
     RouterModule.forRoot(appRoutes),
     CustomerDashboardModule,
     FormsModule,
-    ReactiveFormsModule
-
-
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [EventService, {provide: TOASTR_TOKEN, useValue: toastr}, EventRouteActivator,
+  providers: [EventService, {provide: TOASTR_TOKEN, useValue: toastr},
+    //  EventRouteActivator,
     { provide: 'canDeactivateCreateEvent', useValue: dirtyEvent },
     EventListResolver,
+    EventResolver,
     AuthService,
     {provide: JQ_TOKEN, useValue: jQuery},
     VoterService

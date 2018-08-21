@@ -1,5 +1,5 @@
 import { EventService } from './../shared/event.service';
-import { ISession } from './../shared/event.model';
+import { ISession, IEvent } from './../shared/event.model';
 import { AuthService } from './../../user/auth.service';
 import {Component} from '@angular/core';
 import {Router} from '@angular/router';
@@ -17,11 +17,18 @@ export class NavBarComponent {
     // tslint:disable-next-line:no-inferrable-types
     searchTerm: string = '';
     foundSessions: ISession[];
+    events: IEvent[];
 constructor (private authService: AuthService, private route: Router, private eventService: EventService) {}
 searchSessions(searchTerm) {
     this.eventService.searchSessions(searchTerm).subscribe(sessions => {
         this.foundSessions = sessions;
         console.log(this.foundSessions);
     });
+}
+showEvents() {
+this.eventService.getEvents().subscribe(events => {
+    console.log(events);
+this.events = events;
+});
 }
 }

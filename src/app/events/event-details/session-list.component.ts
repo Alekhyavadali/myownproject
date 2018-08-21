@@ -11,6 +11,7 @@ export class SessionListComponent implements OnChanges {
     @Input() sessions: ISession[];
     @Input() filterBy: string;
     @Input() sortBy: string;
+    @Input() eventId: number;
     visibleSessions: ISession[] = [];
     constructor(private auth: AuthService, private voterService: VoterService) {}
     ngOnChanges() {
@@ -40,9 +41,9 @@ export class SessionListComponent implements OnChanges {
     }
     toggleVote(session: ISession) {
         if (this.userHasVoted(session)) {
-         this.voterService.deleteVoter(session, this.auth.currentUser.userName);
+         this.voterService.deleteVoter(session, this.auth.currentUser.userName, this.eventId);
         } else {
-            this.voterService.addVoter(session, this.auth.currentUser.userName);
+            this.voterService.addVoter(session, this.auth.currentUser.userName, this.eventId);
         }
         if (this.sortBy === 'votes') {
             this.visibleSessions.sort(this.sortByVotesDesc);
